@@ -3,10 +3,23 @@ Config = Config or {}
 Config.ReloadTime = math.random(4000, 6000)
 
 Config.DurabilityBlockedWeapons = {
-    "weapon_stungun",
-    "weapon_nightstick",
-    "weapon_flashlight",
-    "weapon_unarmed",
+  "weapon_stungun",
+  "weapon_nightstick",
+  "weapon_flashlight",
+  "weapon_unarmed",
+}
+
+Config.Throwables = {
+  "ball",
+  "bzgas",
+  "flare",
+  "grenade",
+  "molotov",
+  "pipebomb",
+  "proxmine",
+  "smokegrenade",
+  "snowball",
+  "stickybomb",
 }
 
 Config.DurabilityMultiplier = {
@@ -140,22 +153,7 @@ Config.DurabilityMultiplier = {
 
 Config.WeaponRepairPoints = {
     [1] = {
-        coords = vector3(-3175.06, 1084.37, 20.84),
-        IsRepairing = false,
-        RepairingData = {},
-    },
-    [2] = {
-        coords = vector3(-1122.12, 2696.92, 18.55),
-        IsRepairing = false,
-        RepairingData = {},
-    },
-    [3] = {
-        coords = vector3(1689.39, 3757.72, 34.71),
-        IsRepairing = false,
-        RepairingData = {},
-    },
-    [4] = {
-        coords = vector3(-334.54, 6081.79, 31.45),
+        coords = vector3(964.02, -1267.41, 34.97),
         IsRepairing = false,
         RepairingData = {},
     }
@@ -911,3 +909,9 @@ WeaponAttachments = {
         },
     },
 }
+
+local function getConfigWeaponAttachments(weapon)
+    return WeaponAttachments[weapon]
+end
+
+exports('getConfigWeaponAttachments', getConfigWeaponAttachments)
