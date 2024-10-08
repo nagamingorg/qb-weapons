@@ -1,6 +1,6 @@
 Config = Config or {}
 
-Config.ReloadTime = math.random(4000, 6000)
+Config.ReloadTime = math.random(3000, 6000)
 
 Config.DurabilityBlockedWeapons = {
     'weapon_stungun',
@@ -23,7 +23,7 @@ Config.Throwables = {
 }
 
 Config.WeapDraw = {
-    variants = { 130, 122, 3, 6, 8 },
+    variants = { 1, 3, 5, 6, 8, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 119, 120, 122, 130 },
     weapons = {
         'WEAPON_STUNGUN',
         'WEAPON_PISTOL',

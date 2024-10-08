@@ -126,7 +126,7 @@ local function checkWeapon(newWeap)
     return false
 end
 
-local function isWeaponHolsterable(weap)
+local function IsWeaponHolsterable(weap)
     for i = 1, #Config.WeapDraw.weapons do
         if joaat(Config.WeapDraw.weapons[i]) == weap then
             return true
@@ -164,13 +164,44 @@ RegisterNetEvent('qb-weapons:client:DrawWeapon', function()
                 loadAnimDict('rcmjosh4')
                 loadAnimDict('weapons@pistol@')
 
-                local holsterVariant = GetPedDrawableVariation(ped, 8)
+                local holsterVariant = GetPedDrawableVariation(ped, 7)
                 wearingHolster = false
                 for i = 1, #Config.WeapDraw.variants, 1 do
                     if holsterVariant == Config.WeapDraw.variants[i] then
+                        print('wearing holster')
                         wearingHolster = true
+                        break
                     end
                 end
+
+                local holsterIDEmpty
+                local holsterIDFull
+                if holsterVariant == 1 or holsterVariant == 3 then
+                    holsterIDEmpty = 3
+                    holsterIDFull = 1
+                elseif holsterVariant == 5 or holsterVariant == 6 then
+                    holsterIDEmpty = 5
+                    holsterIDFull = 6
+                elseif holsterVariant == 56 or holsterVariant == 57 then
+                    holsterIDEmpty = 57
+                    holsterIDFull = 56
+                elseif holsterVariant == 58 or holsterVariant == 59 then
+                    holsterIDEmpty = 59
+                    holsterIDFull = 58
+                elseif holsterVariant == 60 or holsterVariant == 61 then
+                    holsterIDEmpty = 61
+                    holsterIDFull = 60
+                elseif holsterVariant == 62 or holsterVariant == 63 then
+                    holsterIDEmpty = 63
+                    holsterIDFull = 62
+                elseif holsterVariant == 64 or holsterVariant == 66 then
+                    holsterIDEmpty = 65
+                    holsterIDFull = 64
+                elseif holsterVariant == 119 or holsterVariant == 120 then
+                    holsterIDEmpty = 120
+                    holsterIDFull = 119
+                end
+
                 if checkWeapon(newWeap) then
                     if holstered then
                         if wearingHolster then
@@ -183,8 +214,9 @@ RegisterNetEvent('qb-weapons:client:DrawWeapon', function()
                             Wait(300)
                             SetCurrentPedWeapon(ped, newWeap, true)
 
-                            if isWeaponHolsterable(newWeap) then
-                                SetPedComponentVariation(ped, 7, currHolster == 8 and 2 or currHolster == 1 and 3 or currHolster == 6 and 5, currHolsterTexture, 2)
+                            if IsWeaponHolsterable(newWeap) then
+                                print('empty ' .. holsterIDEmpty)
+                                SetPedComponentVariation(ped, 7, holsterIDEmpty, currHolsterTexture, 2)
                             end
                             currWeap = newWeap
                             Wait(300)
@@ -211,8 +243,9 @@ RegisterNetEvent('qb-weapons:client:DrawWeapon', function()
                             TaskPlayAnimAdvanced(ped, 'reaction@intimidation@cop@unarmed', 'intro', pos.x, pos.y, pos.z, 0, 0, rot, 3.0, 3.0, -1, 50, 0, 0, 0)
                             Wait(500)
 
-                            if isWeaponHolsterable(currWeap) then
-                                SetPedComponentVariation(ped, 7, currHolster, currHolsterTexture, 2)
+                            if IsWeaponHolsterable(currWeap) then
+                                print('empty ' .. holsterIDFull)
+                                SetPedComponentVariation(ped, 7, holsterIDFull, currHolsterTexture, 2)
                             end
 
                             SetCurrentPedWeapon(ped, `WEAPON_UNARMED`, true)
@@ -223,8 +256,8 @@ RegisterNetEvent('qb-weapons:client:DrawWeapon', function()
                             Wait(300)
                             SetCurrentPedWeapon(ped, newWeap, true)
 
-                            if isWeaponHolsterable(newWeap) then
-                                SetPedComponentVariation(ped, 7, currHolster == 8 and 2 or currHolster == 1 and 3 or currHolster == 6 and 5, currHolsterTexture, 2)
+                            if IsWeaponHolsterable(newWeap) then
+                                SetPedComponentVariation(ped, 7, holsterIDEmpty, currHolsterTexture, 2)
                             end
 
                             Wait(500)
@@ -256,8 +289,9 @@ RegisterNetEvent('qb-weapons:client:DrawWeapon', function()
                             Wait(300)
                             SetCurrentPedWeapon(ped, newWeap, true)
 
-                            if isWeaponHolsterable(newWeap) then
-                                SetPedComponentVariation(ped, 7, currHolster == 8 and 2 or currHolster == 1 and 3 or currHolster == 6 and 5, currHolsterTexture, 2)
+                            if IsWeaponHolsterable(newWeap) then
+                                print('empty ' .. holsterIDEmpty)
+                                SetPedComponentVariation(ped, 7, holsterIDEmpty, currHolsterTexture, 2)
                             end
 
                             currWeap = newWeap
@@ -285,8 +319,9 @@ RegisterNetEvent('qb-weapons:client:DrawWeapon', function()
                             TaskPlayAnimAdvanced(ped, 'reaction@intimidation@cop@unarmed', 'intro', pos.x, pos.y, pos.z, 0, 0, rot, 3.0, 3.0, -1, 50, 0, 0, 0)
                             Wait(500)
 
-                            if isWeaponHolsterable(currWeap) then
-                                SetPedComponentVariation(ped, 7, currHolster, currHolsterTexture, 2)
+                            if IsWeaponHolsterable(currWeap) then
+                                print('empty ' .. holsterIDFull)
+                                SetPedComponentVariation(ped, 7, holsterIDFull, currHolsterTexture, 2)
                             end
 
                             SetCurrentPedWeapon(ped, `WEAPON_UNARMED`, true)
